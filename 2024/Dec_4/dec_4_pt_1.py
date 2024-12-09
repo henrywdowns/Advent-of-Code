@@ -13,10 +13,9 @@ vertical = (np.transpose(array_data)).tolist()
 def count_matches(input_data):
     running_total = 0
     for line in input_data:
-        if type(line) == list:
+        if isinstance(line, list):
             line = ''.join(line)
-            print(line)
-        lr_list = re.findall('(XMAS|SAMX)',line)
+        lr_list = re.findall(r"(?=(XMAS|SAMX))", line)
         running_total += len(lr_list)
     return running_total
 
@@ -25,13 +24,11 @@ def DiagonalOrder(arr,dir):
     diagonal_matrix = [[] for i in range (rows + cols - 1)]
     for i in range(cols):
         for j in range(rows):
-            combine_i_j = 0
+            combine_i_j = (i + j)
             if dir == 'down-left':
-                combine_i_j = (i + j)
+                diagonal_matrix[combine_i_j].append(arr[i][j])
             elif dir == 'up-right':
-                combine_i_j = (cols - 1 - j) + i
-            diagonal_matrix[combine_i_j].append(arr[i][j])
-        
+                diagonal_matrix[combine_i_j].append(arr[i][cols-1-j])    
     return diagonal_matrix
     
 down_left = DiagonalOrder(data,'down-left')
@@ -39,7 +36,7 @@ up_right = DiagonalOrder(data,'up-right')
 
 for axis in [horizontal,vertical,down_left,up_right]:
     dir_count = count_matches(axis)
-    print(dir_count)
+    #print(dir_count)
     xmas_count += dir_count
 
-print(xmas_count)
+print(f'xmas count: {xmas_count}')
