@@ -2,14 +2,17 @@ import numpy as np
 
 data = open('Dec_6/input.txt','r').read().strip().split('\n')
 
-split_data = [list(line) for line in data]
+pt_2_split_data = [list(line) for line in data]
+split_data = pt_2_split_data.copy()
 
 current_dir = (-1,0)
 obstacles = []
+previously_visited = {}
 current_loc = (0,0)
+pt_2 = False
 
 def main():
-    global current_dir, current_loc
+    global current_dir, current_loc, previously_visited
     find_obstacles()
     print(f'Starting loc: {current_loc}')
     
@@ -19,7 +22,11 @@ def main():
         print(f'Current loc: {current_loc}, Current dir: {current_dir}')
         target_pos = get_next(current_loc, current_dir)
         
-        if target_pos == 'Out of bounds':
+        if current_dir == previously_visited.get(current_loc):
+            print("Infinite loop detected. Next!")
+            return 1
+
+        elif target_pos == 'Out of bounds':
             print("Reached out of bounds. Terminating.")
             break
         elif target_pos in obstacles:
@@ -28,6 +35,7 @@ def main():
         else:
             current_loc = target_pos
             split_data[current_loc[0]][current_loc[1]] = 'X'
+            previously_visited[(current_loc[0], current_loc[1])] = current_dir
         
         print(f'New location: {current_loc}')
         
@@ -36,10 +44,25 @@ def main():
         # input("Press Enter to continue...")
 
     final_count = sum(row.count('X') for row in split_data)
-    print_grid()
+    #print_grid()
+    print(previously_visited)
     print(f"Final count of visited positions: {final_count}")
 
-
+def main_2():
+    global split_data
+    pt_2_final_total = 0
+    for visited_loc in previously_visited.keys():
+        x,y = visited_loc[0],visited_loc[1]
+        temp_split_data = split_data.copy()
+        match temp_split_data[x][y]:
+            case '^':
+                continue
+            case '#':
+                continue
+            case '.':
+                temp_split_data[x][y] = '#'
+                split_data = temp_split_data
+                pt_2_final_total += main(temp_split_data)
 
 def find_obstacles():
     global current_loc
