@@ -117,3 +117,4 @@ def print_grid():
 
 if __name__ == '__main__':
     main()
+    main_2()
