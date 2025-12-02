@@ -2,7 +2,8 @@ from aocd_api import AOCD
 
 puzzle = AOCD(1,2025)
 
-data = [line for line in puzzle.data.split('\n') if line]
+data = puzzle.get_list('\n')
+# data = ["L68", "L30", "R48", "L5", "R60", "L55", "L1", "L99", "R14", "L82"]
 
 def turn(current_pos,value):
     dir = value[0].upper()
@@ -31,15 +32,17 @@ for x in data:
         # set base equal to the modulo (remainder) and proceed with the leftover part of the turn
         x = x[0]+str(x_value%100)
         # print(f'new x: {x}')
+    if base == 0 and x[0] == 'L':
+        zero_count -= 1
     base = turn(base,x)
     if test < 15: print(f'New base: {base}')
     # if we land on or past "0" (0 for L, 100 for R) then take note
     if base <= 0 or base >= 100:
         zero_count += 1
         if test < 15:
-            print('zero!')
+            print(f'zero! count: {zero_count}')
     # set base equal to remainder for next iter
     base = base%100
 print(zero_count)
 
-# puzzle.submit_answer(zero_count)
+puzzle.submit_answer(zero_count)

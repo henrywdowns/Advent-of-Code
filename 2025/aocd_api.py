@@ -25,3 +25,6 @@ class AOCD:
 
     def set_part(self,part):
         self.part=part
+
+    def get_list(self,delimiter):
+        return [line for line in self.data.split(delimiter) if line]
