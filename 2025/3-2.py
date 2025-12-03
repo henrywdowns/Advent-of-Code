@@ -33,4 +33,4 @@ def do_the_thing():
 
 final_result = do_the_thing()
 
-puzzle.submit_answer(do_the_thing())
+# puzzle.submit_answer(do_the_thing())
