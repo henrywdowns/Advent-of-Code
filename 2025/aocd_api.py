@@ -20,7 +20,7 @@ class AOCD:
             print(e)
 
     def submit_answer(self,value):
-        submission = submit(value)
+        submission = submit(value,session=self.session)
         return submission
 
     def set_part(self,part):
