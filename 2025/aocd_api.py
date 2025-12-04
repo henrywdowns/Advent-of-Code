@@ -5,6 +5,11 @@ import os
 import dotenv
 from datetime import date
 
+# to solve my UNC issues:
+
+# net use Y: "\\corp.bloomberg.com\ny-dfs\users\hdowns5\VSCode\Python\Advent-of-Code"
+# cd Y:
+
 class AOCD:
     def __init__(self,day,year=None,part=None):
         self.day=day
