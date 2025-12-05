@@ -40,4 +40,4 @@ for row in range(rows):
         else:
             mockup[row].append('.')
 print(grand_total)
-puzzle.submit_answer(grand_total)
+# puzzle.submit_answer(grand_total)

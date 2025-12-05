@@ -13,7 +13,13 @@ from datetime import date
 class AOCD:
     def __init__(self,day,year=None,part=None):
         self.day=day
-        self.year=year if year else date.today().year
+        if year:
+            self.year=year
+        else:
+            if date.today().month < 12: 
+                self.year = date.today().year - 1
+            else:
+                self.year = date.today().year
         self.part=part
 
         self.session = os.getenv("AOCD_COOKIE")
