@@ -1,4 +1,4 @@
-from aocd_api import AOCD
+from core import AOCD
 import numpy as np
 
 puzzle = AOCD(4)

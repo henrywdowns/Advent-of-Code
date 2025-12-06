@@ -1,4 +1,4 @@
-from aocd_api import AOCD
+from core import AOCD
 
 puzzle = AOCD(5)
 data = puzzle.data

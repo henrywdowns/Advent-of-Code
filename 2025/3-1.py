@@ -1,4 +1,4 @@
-from aocd_api import AOCD
+from core import AOCD
 
 puzzle = AOCD(3)
 data = puzzle.get_list('\n')

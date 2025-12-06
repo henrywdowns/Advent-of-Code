@@ -1,5 +1,5 @@
 from functools import reduce
-from aocd_api import AOCD
+from core import AOCD
 import re
 import numpy as np
 

@@ -1,4 +1,4 @@
-from aocd_api import AOCD
+from core import AOCD
 import numpy as np
 
 # brute force baby here we go
