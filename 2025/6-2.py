@@ -1,5 +1,5 @@
 from functools import reduce
-from aocd_api import AOCD
+from core import AOCD
 import re
 import numpy as np
 
@@ -26,4 +26,4 @@ for line in data:
     if accum:
         equation.append(int(accum))
     accum = ''
-puzzle.submit_answer(gt)
+# puzzle.submit_answer(gt)
