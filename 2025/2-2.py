@@ -31,8 +31,7 @@ def factors(n):
             if i != n // i:
                 fs.append(n // i)
         i += 1
-    fs = sorted(fs)
-    fs.pop()
+    fs = sorted(fs,reverse=True)[1:]
     return fs
 
 running_total = 0
@@ -47,8 +46,7 @@ for i in data:
     ids = [x for x in range(first,last)]
     for id in ids:
         if compare_chunks(id):
-            print(f'Identified repeating pattern: {id}')
             running_total += id
 
 print(running_total)
-puzzle.submit_answer(running_total)
+# puzzle.submit_answer(running_total)
